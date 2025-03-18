@@ -1,8 +1,8 @@
 <?php
 
-namespace kapersoft\KnockerForLaravel\Database\Factories;
+declare(strict_types=1);
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+namespace kapersoft\KnockerForLaravel\Database\Factories;
 
 /*
 class ModelFactory extends Factory

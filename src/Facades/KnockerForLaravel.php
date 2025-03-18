@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace kapersoft\KnockerForLaravel\Facades;
 
 use Illuminate\Support\Facades\Facade;

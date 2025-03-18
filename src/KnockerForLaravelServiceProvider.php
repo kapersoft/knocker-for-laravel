@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace kapersoft\KnockerForLaravel;
 
+use kapersoft\KnockerForLaravel\Commands\KnockerForLaravelCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use kapersoft\KnockerForLaravel\Commands\KnockerForLaravelCommand;
 
 class KnockerForLaravelServiceProvider extends PackageServiceProvider
 {

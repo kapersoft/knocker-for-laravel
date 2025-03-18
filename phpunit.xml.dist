@@ -16,7 +16,7 @@
     backupStaticProperties="false"
 >
     <testsuites>
-        <testsuite name="kapersoft Test Suite">
+        <testsuite name="Kapersoft Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
