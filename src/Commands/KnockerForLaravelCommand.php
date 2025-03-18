@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace kapersoft\KnockerForLaravel\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class KnockerForLaravelCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'knocker-for-laravel';
 
     public $description = 'My command';
 

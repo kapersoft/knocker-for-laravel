@@ -1,17 +1,17 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "kapersoft/knocker-for-laravel",
+    "description": "This is my package knocker-for-laravel",
     "keywords": [
-        ":vendor_name",
+        "Kapersoft bv",
         "laravel",
-        ":package_slug"
+        "knocker-for-laravel"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/kapersoft/knocker-for-laravel",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Jan Willem Kaper",
+            "email": "kapersoft@gmail.com",
             "role": "Developer"
         }
     ],
@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src/",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories/"
+            "kapersoft\\KnockerForLaravel\\": "src/",
+            "kapersoft\\KnockerForLaravel\\Database\\Factories\\": "database/factories/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests/",
+            "kapersoft\\KnockerForLaravel\\Tests\\": "tests/",
             "Workbench\\App\\": "workbench/app/"
         }
     },
@@ -63,10 +63,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "kapersoft\\KnockerForLaravel\\KnockerForLaravelServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "KnockerForLaravel": "kapersoft\\KnockerForLaravel\\Facades\\KnockerForLaravel"
             }
         }
     },
