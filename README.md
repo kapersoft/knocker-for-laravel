@@ -1,84 +1,107 @@
-# This is my package knocker-for-laravel
+# Knocker for Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/kapersoft/knocker-for-laravel.svg?style=flat-square)](https://packagist.org/packages/kapersoft/knocker-for-laravel)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/kapersoft/knocker-for-laravel/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/kapersoft/knocker-for-laravel/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/kapersoft/knocker-for-laravel/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/kapersoft/knocker-for-laravel/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/kapersoft/knocker-for-laravel.svg?style=flat-square)](https://packagist.org/packages/kapersoft/knocker-for-laravel)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+A Laravel package that seamlessly integrates your application with **Knocker for Laravel Cloud** - a reliable service that ensures your scheduled tasks continue running even when your Laravel application is in hibernation mode.
 
-## Support us
+Learn more about Knocker for Laravel Cloud at [https://knocker.laravel.cloud](https://knocker.laravel.cloud).
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/knocker-for-laravel.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/knocker-for-laravel)
+## Requirements
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+- PHP 8.3 or higher
+- Laravel 12.0 or higher
 
 ## Installation
 
-You can install the package via composer:
+Install the package using Composer:
 
 ```bash
 composer require kapersoft/knocker-for-laravel
 ```
 
-You can publish and run the migrations with:
+## Publish configuration file
 
-```bash
-php artisan vendor:publish --tag="knocker-for-laravel-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
+If you like, you can publish the configuration file:
 
 ```bash
 php artisan vendor:publish --tag="knocker-for-laravel-config"
 ```
 
-This is the contents of the published config file:
+This will create a configuration file with the following structure:
 
 ```php
 return [
+    'endpoint' => env('KNOCKER_ENDPOINT', 'https://knocker.laravel.cloud/api/v1/schedulerTasks'),
+    'token' => env('KNOCKER_TOKEN', ''),
 ];
 ```
 
-Optionally, you can publish the views using
+## Configuration
 
-```bash
-php artisan vendor:publish --tag="knocker-for-laravel-views"
+After registering your application on [Knocker for Laravel Cloud](https://knocker.laravel.cloud), add your authentication token to the `.env` file:
+
+```env
+KNOCKER_TOKEN=your-knocker-token-here
 ```
 
 ## Usage
 
-```php
-$knockerForLaravel = new kapersoft\KnockerForLaravel();
-echo $knockerForLaravel->echoPhrase('Hello, kapersoft!');
+### Registering Scheduled Tasks
+
+To register your application's scheduled tasks with [Knocker for Laravel Cloud](https://knocker.laravel.cloud), run the following command:
+
+```bash
+php artisan knocker:send-scheduler-tasks
 ```
 
+This command performs the following actions:
+
+1. **Scans** your scheduled tasks. These are usually in `routes/console.php` or `app/Console/Kernel.php`
+2. **Extracts** task configurations including:
+   - Cron expressions and timing
+   - Command names and descriptions
+   - Timezone settings
+   - Callback functions and closures
+3. **Uploads** the task information to [Knocker for Laravel Cloud](https://knocker.laravel.cloud)
+
+### Deployment Integration
+
+For seamless integration, add the registration command to your deployment pipeline:
+
+```bash
+php artisan knocker:send-scheduler-tasks
+```
+
+This ensures your task configurations are automatically updated with each deployment, keeping [Knocker for Laravel Cloud](https://knocker.laravel.cloud) synchronized with your latest scheduled tasks.
+
 ## Testing
+
+Run the test suite:
 
 ```bash
 composer test
 ```
 
-## Changelog
+## Documentation
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+Please see the following files for additional information:
 
-## Contributing
+- [CHANGELOG](CHANGELOG.md) - Recent changes and version history
+- [CONTRIBUTING](CONTRIBUTING.md) - Contribution guidelines
+- [LICENSE](LICENSE.md) - MIT License details
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+## Security
 
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+Please review [our security policy](SECURITY.MD) for information on reporting security vulnerabilities.
 
 ## Credits
 
-- [Jan Willem Kaper](https://github.com/kapersoft)
-- [All Contributors](../../contributors)
+- [Jan Willem Kaper](https://github.com/kapersoft) - Package Author
+- [All Contributors](../../contributors) - Community Contributors
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+This package is open-sourced software licensed under the [MIT License](LICENSE.md).
