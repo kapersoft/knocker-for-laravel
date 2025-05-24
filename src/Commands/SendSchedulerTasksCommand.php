@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Kapersoft\Knocker\Commands;
 
-use RuntimeException;
 use Closure;
 use Illuminate\Console\Command;
 use Illuminate\Console\Scheduling\CallbackEvent;
@@ -14,6 +13,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schedule;
 use ReflectionClass;
 use ReflectionFunction;
+use RuntimeException;
 
 class SendSchedulerTasksCommand extends Command
 {
