@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Kapersoft\Knocker\Commands;
 
+use RuntimeException;
 use Closure;
 use Illuminate\Console\Command;
 use Illuminate\Console\Scheduling\CallbackEvent;
@@ -96,8 +97,11 @@ class SendSchedulerTasksCommand extends Command
             $closureVariables = $function->getClosureUsedVariables();
 
             if ($closureCalledClass->getName() === \Illuminate\Console\Scheduling\Schedule::class && isset($closureVariables['job'])) {
-                return $closureVariables['job']::class;
-
+                return match (true) {
+                    is_string($closureVariables['job']) => $closureVariables['job'],
+                    is_object($closureVariables['job']) => $closureVariables['job']::class,
+                    default => throw new RuntimeException('Invalid job type'),
+                };
             }
 
             return sprintf(

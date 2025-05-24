@@ -44,6 +44,9 @@ test('successfully sends scheduler tasks to Knocker', function () {
     Schedule::job(new SendEmails)
         ->description('Job SendEmails')
         ->hourlyAt('35');
+    Schedule::job(SendEmails::class)
+        ->monthlyOn(1, '06:00')
+        ->timezone('Europe/Amsterdam');
 
     Http::fake([
         'https://knocker.laravel.cloud/api/v1/schedulerTasks' => Http::response([
@@ -93,6 +96,12 @@ test('successfully sends scheduler tasks to Knocker', function () {
                         'command' => 'Kapersoft\Knocker\Tests\Fixtures\SendEmails',
                         'description' => 'Job SendEmails',
                         'timezone' => 'UTC',
+                    ],
+                    [
+                        'cron_expression' => '0 6 1 * *',
+                        'command' => 'Kapersoft\Knocker\Tests\Fixtures\SendEmails',
+                        'description' => 'Kapersoft\Knocker\Tests\Fixtures\SendEmails',
+                        'timezone' => 'Europe/Amsterdam',
                     ],
                 ],
             ];
